@@ -11,3 +11,13 @@ module "public_subnet" {
   public_subnet_cidr = var.public_subnet_cidr
   vpc_id             = module.vpc.vpc_id
 }
+
+# ECR
+module "ecr" {
+
+  source = "../../modules/ecr"
+
+  name      = var.name
+  namespace = var.namespace
+  stage     = var.stage
+}

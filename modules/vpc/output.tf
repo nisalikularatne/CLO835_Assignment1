@@ -1,4 +1,4 @@
 output "vpc_id" {
-  description = "The ID of the VPC that hosts ECS cluster"
+  description = "The ID of the VPC"
   value       = module.vpc.vpc_id
 }

@@ -12,7 +12,7 @@ variable "ipv4_primary_cidr_block" {
 }
 variable "name" {
   type        = string
-  description = "VPC Name"
+  description = "ECR Name"
   default     = "containers"
 }
 variable "namespace" {
