@@ -18,8 +18,8 @@ variable "ipv4_primary_cidr_block" {
   description = "IPV4 cidr block for VPC"
   default     = "10.0.0.0/16"
 }
-variable "public_subnet_cidr"{
-  type = string
+variable "public_subnet_cidr" {
+  type        = string
   description = "IPV4 cidr block for public subnet"
-  default = "10.0.0.0/24"
+  default     = "10.0.0.0/24"
 }
