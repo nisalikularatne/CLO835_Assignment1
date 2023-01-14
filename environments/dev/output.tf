@@ -7,7 +7,7 @@ output "public_subnet" {
   value       = module.public_subnet.subnet_id
 }
 
-output "ecr_repository_id"{
+output "ecr_repository_id" {
   description = "The ID of the ecr repository"
   value       = module.ecr.ecr_repo_id
 }
