@@ -61,7 +61,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${DATABASE}-${IMAGE_TAG} -f Dockerfile_mysql .
-          docker build -t $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${APPLICATION}${IMAGE_TAG} .
+          docker build -t $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${APPLICATION}-${IMAGE_TAG} .
           docker push $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${DATABASE}-${IMAGE_TAG}
           docker push $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${APPLICATION}-${IMAGE_TAG}
         
