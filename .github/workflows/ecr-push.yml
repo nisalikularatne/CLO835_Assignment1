@@ -23,6 +23,8 @@ on:
 env:
   PREFIX:  docker-dev-containers
   ECR_REPOSITORY:  repo
+  DATABASE: mysql
+  APPLICATION: application
   AWS_REGION: us-east-1
   WORKING_DIR: ./application/*
 
@@ -58,8 +60,8 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG} -f Dockerfile_mysql .
-          docker build -t $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG} .
+          docker build -t $ECR_REGISTRY/${PREFIX}-${DATABASE}-${ECR_REPOSITORY}:${IMAGE_TAG} -f Dockerfile_mysql .
+          docker build -t $ECR_REGISTRY/${PREFIX}-${APPLICATION}-${ECR_REPOSITORY}:${IMAGE_TAG} .
           docker push $ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG}
           echo "image=$ECR_REGISTRY/${PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG}" >> $GITHUB_OUTPUT
 
