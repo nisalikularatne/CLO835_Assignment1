@@ -63,7 +63,7 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/${DATABASE_ECR_PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG} -f Dockerfile_mysql .
           docker build -t $ECR_REGISTRY/${APPLICATION_ECR_PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG} .
-          docker push $ECR_REGISTRY/${DATABASE_ECR_PREFIX}-${ECR_REPOSITORY}:${DATABASE}-${IMAGE_TAG}
-          docker push $ECR_REGISTRY/${APPLICATION_PREFIX}-${ECR_REPOSITORY}:${APPLICATION}-${IMAGE_TAG}
+          docker push $ECR_REGISTRY/${DATABASE_ECR_PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG}
+          docker push $ECR_REGISTRY/${APPLICATION_PREFIX}-${ECR_REPOSITORY}:${IMAGE_TAG}
         
 
