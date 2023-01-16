@@ -1,4 +1,4 @@
 output "ecr_repo_id" {
   description = "ECR repo ID"
-  value       = aws_ecr_repository.this.id
+  value       = aws_ecr_repository.application.id
 }
