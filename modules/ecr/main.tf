@@ -3,11 +3,19 @@ locals {
 }
 
 # Define ECR repo to store application images
-resource "aws_ecr_repository" "this" {
-  name         = "${local.prefix}-repo"
+resource "aws_ecr_repository" "application" {
+  name         = "${local.prefix}-application-repo"
   force_delete = true
 
   tags = {
-    Name = "${local.prefix}-repo"
+    Name = "${local.prefix}-application-repo"
+  }
+}
+resource "aws_ecr_repository" "database" {
+  name         = "${local.prefix}-database-repo"
+  force_delete = true
+
+  tags = {
+    Name = "${local.prefix}-database-repo"
   }
 }
