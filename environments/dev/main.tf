@@ -21,3 +21,33 @@ module "ecr" {
   namespace = var.namespace
   stage     = var.stage
 }
+module "ecs" {
+
+  source = "../../modules/ecs"
+
+  name      = var.name
+  namespace = var.namespace
+  stage     = var.stage
+
+}
+
+module "td" {
+
+  source = "../../modules/td"
+
+  name           = var.name
+  namespace      = var.namespace
+  stage          = var.stage
+  container_port = var.container_port
+}
+module "ecs_service" {
+
+  source = "../../modules/ecs_service"
+
+  name                  = var.name
+  namespace             = var.namespace
+  stage                 = var.stage
+  container_port        = var.container_port
+  td_application_arn                = module.td.td_application_arn
+  service_desired_count = var.service_desired_count
+}
