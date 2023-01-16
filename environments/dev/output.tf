@@ -11,3 +11,8 @@ output "ecr_repository_id" {
   description = "The ID of the ecr repository"
   value       = module.ecr.ecr_repo_id
 }
+
+output "ecs_id" {
+  description = "The ID of ECS cluster"
+  value       = module.ecs.ecs_id
+}

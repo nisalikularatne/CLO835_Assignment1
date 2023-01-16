@@ -21,3 +21,12 @@ module "ecr" {
   namespace = var.namespace
   stage     = var.stage
 }
+module "ecs" {
+
+  source = "../../modules/ecs"
+
+  name      = var.name
+  namespace = var.namespace
+  stage     = var.stage
+  vpc_id    = module.vpc.vpc_id
+}
