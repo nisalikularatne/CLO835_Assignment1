@@ -15,6 +15,11 @@ output "ecs_id" {
   description = "The ID of ECS cluster"
   value       = module.ecs.ecs_id
 }
+output "ecs_service_sg_id" {
+  description = "ECS Service SG"
+  value       = module.ecs.ecs_sg_id
+}
+
 
 output "role"{
   description = "The executional role"

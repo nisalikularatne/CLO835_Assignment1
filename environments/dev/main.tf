@@ -46,6 +46,7 @@ module "ecs" {
   name      = var.name
   namespace = var.namespace
   stage     = var.stage
+  vpc_id    = module.vpc.vpc_id
 
 }
 module "ecs_task_execution_role" {
@@ -67,8 +68,8 @@ module "ecs_task_execution_role" {
 #  name                    = var.name
 #  namespace               = var.namespace
 #  stage                   = var.stage
-#  private_subnet_ids      = module.public_subnet.subnet_id
-#  private_route_table_ids = module.public_subnet.private_route_table_ids
+#  private_subnet_ids      = module.vpc.private_subnet_ids
+#  private_route_table_ids = module.vpc.private_route_table_ids
 #  vpc_id                  = module.vpc.vpc_id
 #  ecs_sg_id               = module.ecs.ecs_sg_id
 #}

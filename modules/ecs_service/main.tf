@@ -23,6 +23,7 @@ resource "aws_ecs_service" "application" {
   scheduling_strategy                = "REPLICA"
 
   network_configuration {
+    security_groups  = [data.terraform_remote_state.this.outputs.ecs_service_sg_id]
     subnets          = data.terraform_remote_state.this.outputs.private_subnet_ids
     assign_public_ip = true
   }
@@ -37,6 +38,7 @@ resource "aws_ecs_service" "database" {
   scheduling_strategy                = "REPLICA"
 
   network_configuration {
+    security_groups  = [data.terraform_remote_state.this.outputs.ecs_service_sg_id]
     subnets          = data.terraform_remote_state.this.outputs.private_subnet_ids
     assign_public_ip = true
   }

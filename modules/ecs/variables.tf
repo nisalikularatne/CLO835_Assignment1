@@ -14,3 +14,7 @@ variable "namespace" {
   description = "Project namespace"
   default     = "docker"
 }
+variable "vpc_id" {
+  type        = string
+  description = "The ID of the VPC where the Security Group will be created."
+}
