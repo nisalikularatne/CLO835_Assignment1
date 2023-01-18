@@ -11,7 +11,7 @@ data "terraform_remote_state" "this" {
     region = local.region
   }
 }
-
+//
 locals {
   prefix       = "${var.namespace}-${var.stage}-${var.name}"
   region       = data.aws_region.current.name
