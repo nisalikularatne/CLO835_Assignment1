@@ -21,15 +21,6 @@ module "ecr" {
   namespace = var.namespace
   stage     = var.stage
 }
-module "ecs" {
-
-  source = "../../modules/ecs"
-
-  name      = var.name
-  namespace = var.namespace
-  stage     = var.stage
-
-}
 
 module "td" {
 
@@ -51,4 +42,13 @@ module "ecs_service" {
   td_application_arn                = module.td.td_application_arn
   td_database_arn                = module.td.td_database_arn
   service_desired_count = var.service_desired_count
+}
+module "ecs" {
+
+  source = "../../modules/ecs"
+
+  name      = var.name
+  namespace = var.namespace
+  stage     = var.stage
+
 }
