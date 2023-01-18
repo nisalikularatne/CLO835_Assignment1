@@ -15,8 +15,8 @@ data "terraform_remote_state" "this" {
 locals {
   prefix       = "${var.namespace}-${var.stage}-${var.name}"
   region       = data.aws_region.current.name
-  application_ecr_repo     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-application-repo"
-  database_ecr_repo     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-database-repo"
+  application_ecr_repo     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-application-repo:latest"
+  database_ecr_repo     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-database-repo:latest"
 
   log_group    = aws_cloudwatch_log_group.this.name
 
