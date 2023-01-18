@@ -24,3 +24,7 @@ variable "host_port" {
   description = "The port the application listens on"
   default     = 3000
 }
+variable "role" {
+  type        = string
+  description = "The exec role"
+}

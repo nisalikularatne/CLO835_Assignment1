@@ -2,21 +2,21 @@ output "vpc_id" {
   description = "The ID of the VPC"
   value       = module.vpc.vpc_id
 }
-output "public_subnet" {
-  description = "The ID of the public subnet"
-  value       = module.public_subnet.subnet_id
-}
 
 output "ecr_repository_id" {
   description = "The ID of the ecr repository"
   value       = module.ecr.ecr_repo_id
 }
-
+output "private_subnet_ids" {
+  description = "List of private subnet ids"
+  value       = module.vpc.private_subnet_ids
+}
 output "ecs_id" {
   description = "The ID of ECS cluster"
   value       = module.ecs.ecs_id
 }
-output "subnet_id" {
-  description = "The ID of the public subnet"
-  value       = module.public_subnet.subnet_id
+
+output "role"{
+  description = "The executional role"
+  value       = module.ecs_task_execution_role.arn
 }

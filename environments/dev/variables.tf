@@ -38,3 +38,8 @@ variable "service_desired_count" {
   description = "The desired number of tasks per service"
   default     = 2
 }
+variable "role" {
+  type        = string
+  description = "The exec role"
+  default = ""
+}
