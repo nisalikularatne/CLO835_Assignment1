@@ -17,7 +17,9 @@ data "terraform_remote_state" "this" {
 locals {
   prefix       = "${var.namespace}-${var.stage}-${var.name}"
   region       = data.aws_region.current.name
-  ecr_repo     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-repo"
+  application_ecr_repo     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-application-repo"
+  database_ecr_repo     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.prefix}-database-repo"
+
   log_group    = aws_cloudwatch_log_group.this.name
   lab_role_arn = data.aws_iam_role.labrole.arn
 }
@@ -32,7 +34,7 @@ resource "aws_ecs_task_definition" "application" {
 #  task_role_arn            = local.lab_role_arn
   container_definitions = jsonencode([{
     name      = "${local.prefix}-container"
-    image     = local.ecr_repo
+    image     = local.application_ecr_repo
     essential = true
     portMappings = [{
       protocol      = "tcp"
@@ -64,7 +66,7 @@ resource "aws_ecs_task_definition" "database" {
 #  task_role_arn            = local.lab_role_arn
   container_definitions = jsonencode([{
     name      = "${local.prefix}-database-container"
-    image     = local.ecr_repo
+    image     = local.database_ecr_repo
     essential = true
     portMappings = [{
       protocol      = "tcp"
