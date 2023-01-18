@@ -49,5 +49,6 @@ module "ecs_service" {
   stage                 = var.stage
   container_port        = var.container_port
   td_application_arn                = module.td.td_application_arn
+  td_database_arn                = module.td.td_database_arn
   service_desired_count = var.service_desired_count
 }

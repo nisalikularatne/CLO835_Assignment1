@@ -29,3 +29,7 @@ variable "td_application_arn" {
   type        = string
   description = "Task definition ARN"
 }
+variable "td_database_arn" {
+  type        = string
+  description = "Task definition ARN"
+}

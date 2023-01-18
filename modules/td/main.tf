@@ -2,13 +2,13 @@
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 data "aws_iam_role" "labrole" {
-  name = "LabRole"
+  name = "AWSServiceRoleForECS"
 }
 
 data "terraform_remote_state" "this" {
   backend = "s3"
   config = {
-    bucket = "dev-clo835-assignment"
+    bucket = "dev-clo835-assignment1"
     key    = "infrastructure/terraform.tfstate"
     region = local.region
   }
@@ -23,13 +23,13 @@ locals {
 }
 
 resource "aws_ecs_task_definition" "application" {
-  family                   = "${local.prefix}-task"
+  family                   = "${local.prefix}-application-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "512"
   memory                   = "1024"
   execution_role_arn       = local.lab_role_arn
-  task_role_arn            = local.lab_role_arn
+#  task_role_arn            = local.lab_role_arn
   container_definitions = jsonencode([{
     name      = "${local.prefix}-container"
     image     = local.ecr_repo
@@ -55,22 +55,25 @@ resource "aws_ecs_task_definition" "application" {
   }
 }
 resource "aws_ecs_task_definition" "database" {
-  family                   = "${local.prefix}-task"
+  family                   = "${local.prefix}-database-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "512"
   memory                   = "1024"
   execution_role_arn       = local.lab_role_arn
-  task_role_arn            = local.lab_role_arn
+#  task_role_arn            = local.lab_role_arn
   container_definitions = jsonencode([{
     name      = "${local.prefix}-database-container"
     image     = local.ecr_repo
     essential = true
     portMappings = [{
       protocol      = "tcp"
-      containerPort = var.container_port
-      hostPort      = var.host_port
+      containerPort = 8080
+      hostPort      = 8080
     }]
+    environment = [
+      { "name" : "MYSQL_ROOT_PASSWORD", "value" : "pw" }
+    ]
     logConfiguration = {
       logDriver = "awslogs"
       options = {
