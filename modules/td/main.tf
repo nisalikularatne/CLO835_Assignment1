@@ -39,6 +39,14 @@ resource "aws_ecs_task_definition" "application" {
       containerPort = var.container_port
       hostPort      = var.host_port
     }]
+    environment = [
+      { "name" : "DBHOST", "value" : "172.17.0.2" },
+      { "name" : "DBPORT", "value" : "3306" },
+      { "name" : "DBUSER", "value" : "root" },
+      { "name" : "DATABASE", "value" : "employees" },
+      { "name" : "DBPWD", "value" : "pw" },
+      { "name" : "APP_COLOR", "value" : "blue" }
+    ]
     logConfiguration = {
       logDriver = "awslogs"
       options = {
