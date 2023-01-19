@@ -25,3 +25,7 @@ output "role"{
   description = "The executional role"
   value       = module.ecs_task_execution_role.arn
 }
+output "alb_target_group_arn" {
+  description = "ALB Target group ARN"
+  value       = module.alb.alb_target_group_arn
+}

@@ -26,12 +26,12 @@ variable "public_subnet_cidr" {
 variable "container_port" {
   type        = number
   description = "The port the application listens on"
-  default     = 3000
+  default     = 8080
 }
 variable "host_port" {
   type        = number
   description = "The port the application listens on"
-  default     = 3000
+  default     = 8080
 }
 variable "service_desired_count" {
   type        = number

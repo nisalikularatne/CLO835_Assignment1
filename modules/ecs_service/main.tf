@@ -22,6 +22,11 @@ resource "aws_ecs_service" "application" {
   launch_type                        = "FARGATE"
   scheduling_strategy                = "REPLICA"
 
+  load_balancer {
+    target_group_arn = data.terraform_remote_state.this.outputs.alb_target_group_arn
+    container_name   = "${local.prefix}-container"
+    container_port   = 8080
+  }
   network_configuration {
     security_groups  = [data.terraform_remote_state.this.outputs.ecs_service_sg_id]
     subnets          = data.terraform_remote_state.this.outputs.private_subnet_ids

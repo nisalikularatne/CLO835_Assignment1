@@ -61,6 +61,17 @@ module "ecs_task_execution_role" {
     Automation  = "Terraform"
   }
 }
+# ALB to front ECS service
+module "alb" {
+
+  source = "../../modules/alb"
+
+  name              = var.name
+  namespace         = var.namespace
+  stage             = var.stage
+  public_subnet_ids = module.vpc.public_subnet_ids
+  vpc_id            = module.vpc.vpc_id
+}
 #module "vpce" {
 #
 #  source = "../../modules/vpce"

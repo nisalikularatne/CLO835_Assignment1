@@ -6,7 +6,7 @@ variable "stage" {
 variable "namespace" {
   type        = string
   description = "Project name"
-  default     = "week6"
+  default     = "week4"
 }
 
 variable "name" {
@@ -14,17 +14,16 @@ variable "name" {
   description = "No idea what name is for"
   default     = "todo-app"
 }
-variable "container_port" {
-  type        = number
-  description = "The port the application listens on"
-  default     = 8080
+
+variable "public_subnet_ids" {
+  type        = list(string)
+  description = "List of public subnet IDs"
+  default     = []
 }
-variable "host_port" {
-  type        = number
-  description = "The port the application listens on"
-  default     = 8080
-}
-variable "role" {
+
+
+variable "vpc_id" {
   type        = string
-  description = "The exec role"
+  description = "VPC Id"
 }
+
