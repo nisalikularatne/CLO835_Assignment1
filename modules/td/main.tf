@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "application" {
       hostPort      = var.host_port
     }]
     environment = [
-      { "name" : "DBHOST", "value" : "127.0.0.1" },
+      { "name" : "DBHOST", "value" : "10.0.29.84" },
       { "name" : "DBPORT", "value" : "3306" },
       { "name" : "DBUSER", "value" : "root" },
       { "name" : "DATABASE", "value" : "employees" },
